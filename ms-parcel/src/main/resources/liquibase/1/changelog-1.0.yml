@@ -1,0 +1,139 @@
+databaseChangeLog:
+  - changeSet:
+      id: create address table
+      author: Yusif Hajiyev
+      changes:
+        - createTable:
+            tableName: address
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: address
+                  type: varchar(128)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: region
+                  type: varchar(128)
+              - column:
+                  name: postal_code
+                  type: int
+              - column:
+                  name: country
+                  type: varchar(40)
+              - column:
+                  name: city
+                  type: varchar(30)
+              - column:
+                  name: phone
+                  type: varchar(32)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: longitude
+                  type: varchar(20)
+              - column:
+                  name: latitude
+                  type: varchar(20)
+              - column:
+                  name: created_date
+                  type: TIMESTAMP
+                  defaultValue: now()
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: create parcel table
+      author: Yusif Hajiyev
+      changes:
+        - createTable:
+            tableName: parcel
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: parcel_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: customer_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: courier_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: quantity
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: weight
+                  type: double
+                  constraints:
+                    nullable: false
+              - column:
+                  name: length
+                  type: double
+                  constraints:
+                    nullable: false
+              - column:
+                  name: width
+                  type: double
+                  constraints:
+                    nullable: false
+              - column:
+                  name: height
+                  type: double
+                  constraints:
+                    nullable: false
+              - column:
+                  name: address_from
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: address_to
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: parcel_status
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: TIMESTAMP
+                  defaultValue: now()
+                  constraints:
+                    nullable: false
+              - column:
+                  name: update_date
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: cancel_date
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false

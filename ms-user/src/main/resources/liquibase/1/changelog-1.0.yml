@@ -1,0 +1,207 @@
+databaseChangeLog:
+  - changeSet:
+      id: create address table
+      author: Yusif Hajiyev
+      changes:
+        - createTable:
+            tableName: address
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: address
+                  type: varchar(128)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: region
+                  type: varchar(128)
+              - column:
+                  name: postal_code
+                  type: int
+              - column:
+                  name: country
+                  type: varchar(40)
+              - column:
+                  name: city
+                  type: varchar(30)
+              - column:
+                  name: phone
+                  type: varchar(32)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: longitude
+                  type: varchar(20)
+              - column:
+                  name: latitude
+                  type: varchar(20)
+              - column:
+                  name: created_date
+                  type: TIMESTAMP
+                  defaultValue: now()
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: create role table
+      author: Yusif Hajiyev
+      changes:
+        - createTable:
+            tableName: role
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(40)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: TIMESTAMP
+                  defaultValue: now()
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: create user table
+      author: Yusif Hajiyev
+      changes:
+        - createTable:
+            tableName: guavapay_user
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: username
+                  type: varchar(40)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: password
+                  type: varchar(40)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: role_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: TIMESTAMP
+                  defaultValue: now()
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: create customer table
+      author: Yusif Hajiyev
+      changes:
+        - createTable:
+            tableName: customer
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(40)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: full_name
+                  type: varchar(40)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: address_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: TIMESTAMP
+                  defaultValue: now()
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: create courier table
+      author: Yusif Hajiyev
+      changes:
+        - createTable:
+            tableName: courier
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: full_name
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: courier_type
+                  type: varchar(40)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: courier_company_name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(128)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: address_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: courier_status
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: TIMESTAMP
+                  defaultValue: now()
+                  constraints:
+                    nullable: false

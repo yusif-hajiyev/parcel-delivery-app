@@ -1,0 +1,10 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /ms-api-gateway
+
+spring:
+  application:
+    name: ms-api-gateway
+  main:
+    allow-bean-definition-overriding: true

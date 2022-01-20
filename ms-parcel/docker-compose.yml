@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  postgres_db:
+    image: "postgres:11.4"
+    restart: always
+    container_name: parcel_db
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_DB: guavapay_parcel_db
+      POSTGRES_PASSWORD: nE5kMc7JCGNqwDQM
+  parcelApp:
+    image: 'ms-parcel:latest'
+    build:
+      context: .
+    container_name: parcel_app
+    ports:
+      - 8083:8083
+    depends_on:
+      - postgres_db
+    environment:
+      - DATASOURCE_URL=jdbc:postgresql://postgres_db:5432/guavapay_parcel_db
+      - DATASOURCE_USERNAME=postgres
+      - DATASOURCE_PASSWORD=nE5kMc7JCGNqwDQM
+
+networks:
+  default:
+    external:
+      name: guavapay

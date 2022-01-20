@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  postgres_db:
+    image: "postgres:11.4"
+    restart: always
+    container_name: user_db
+    ports:
+      - 5434:5432
+    environment:
+      POSTGRES_DB: guavapay_user_db
+      POSTGRES_PASSWORD: nE5kMc7JCGNqwDQM
+  userApp:
+    image: 'ms-user:latest'
+    build:
+      context: .
+    container_name: user_app
+    ports:
+      - 8082:8082
+    depends_on:
+      - postgres_db
+    environment:
+      - DATASOURCE_URL=jdbc:postgresql://postgres_db:5432/guavapay_user_db
+      - DATASOURCE_USERNAME=postgres
+      - DATASOURCE_PASSWORD=nE5kMc7JCGNqwDQM
+
+networks:
+  default:
+    external:
+      name: guavapay

@@ -1,0 +1,32 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /ms-user
+
+spring:
+  application:
+    name: ms-user
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${DATASOURCE_URL}
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
+    hikari:
+      connection-timeout: 60000
+      maximum-pool-size: 5
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL94Dialect
+    properties:
+      hibernate:
+        format_sql: true
+        temp:
+          use_jdbc_metadata_defaults: false
+  liquibase:
+    change-log: classpath:liquibase/changelog-master.yml
+
+
+client:
+  ms-auth:
+    endpoint: http://authApp:8081/ms-auth

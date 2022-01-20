@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  authApp:
+    image: 'ms-auth:latest'
+    build:
+      context: .
+    container_name: auth_app
+    ports:
+      - 8081:8081
+
+networks:
+  default:
+    external:
+      name: guavapay

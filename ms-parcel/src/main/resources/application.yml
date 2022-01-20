@@ -1,0 +1,36 @@
+server:
+  port: 8083
+  servlet:
+    context-path: /ms-parcel
+
+spring:
+  application:
+    name: ms-parcel
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${DATASOURCE_URL}
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
+    hikari:
+      connection-timeout: 60000
+      maximum-pool-size: 5
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL94Dialect
+    properties:
+      hibernate:
+        format_sql: true
+        temp:
+          use_jdbc_metadata_defaults: false
+    hibernate:
+      ddl-auto: create
+  liquibase:
+    change-log: classpath:liquibase/changelog-master.yml
+
+client:
+  ms-auth:
+    endpoint: http://authApp:8081/ms-auth
+  ms-user:
+    endpoint: http://userApp:8082/ms-user
+

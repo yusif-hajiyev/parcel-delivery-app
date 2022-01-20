@@ -1,0 +1,105 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.10.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'groovy'
+	id 'jacoco'
+}
+
+group = 'az.guavapay.user'
+version = '1.0'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	testImplementation group: 'junit', name: 'junit', version: '4.12'
+}
+
+dependencies {
+	// web
+	implementation('org.springframework.boot:spring-boot-starter-web') {
+		exclude group: 'com.fasterxml.jackson.core', module: 'jackson-databind'
+	}
+	implementation('org.springframework.boot:spring-boot-starter-validation')
+	implementation('io.springfox:springfox-swagger2:2.9.2') {
+		exclude group: 'com.fasterxml.jackson.core', module: 'jackson-annotations'
+		exclude group: 'com.google.guava', module: 'guava'
+	}
+	implementation('com.google.guava:guava:30.0-jre')
+	implementation('io.springfox:springfox-swagger-ui:2.9.2')
+
+	// data
+	implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+
+	implementation('org.liquibase:liquibase-core:3.8.0') {
+		exclude group: 'org.apache.ant', module: 'ant'
+	}
+	implementation('org.apache.ant:ant:1.10.9')
+	runtimeOnly('org.postgresql:postgresql')
+	implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.4.24.Final'
+
+	// client
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:2.2.6.RELEASE'
+	implementation('org.apache.httpcomponents:httpclient:4.5.13')
+
+	// security
+	implementation('org.springframework.boot:spring-boot-starter-security')
+
+	//hystrix
+	implementation('org.springframework.cloud:spring-cloud-starter-netflix-hystrix:2.1.0.RELEASE')
+
+	// common
+	implementation('org.apache.commons:commons-lang3')
+	implementation('net.logstash.logback:logstash-logback-encoder:5.2') {
+		exclude group: 'com.fasterxml.jackson.core', module: 'jackson-databind'
+	}
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.10.8'
+
+	// auto generation
+	compileOnly('org.projectlombok:lombok')
+	annotationProcessor('org.projectlombok:lombok')
+	annotationProcessor('org.mapstruct:mapstruct-jdk8:1.2.0.Final')
+	annotationProcessor('org.mapstruct:mapstruct-processor:1.2.0.Final')
+	implementation('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
+	implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-cbor', version: '2.11.4'
+
+	// test
+	testImplementation('org.springframework.boot:spring-boot-starter-test')
+	implementation('org.hsqldb:hsqldb')
+	testImplementation('org.spockframework:spock-spring:1.2-groovy-2.5')
+	testImplementation('io.github.benas:random-beans:3.7.0')
+
+	implementation group: 'org.yaml', name: 'snakeyaml', version: '1.27'
+	implementation group: 'commons-codec', name: 'commons-codec', version: '1.15'
+}
+
+
+bootJar {
+	archiveName = "${project.name}.jar"
+}
+
+jar {
+	enabled = true
+	archiveName = "${project.name}-app.jar"
+}
+
+jacoco {
+	toolVersion = '0.8.6'
+}
+
+jacocoTestReport {
+	reports {
+		xml.enabled true
+		html.enabled false
+	}
+}
+
+test.finalizedBy jacocoTestReport
