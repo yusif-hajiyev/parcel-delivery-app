@@ -4,20 +4,20 @@
  I use postgre as database
  
  # Container technology
- For to start services was used Docker Compose.
- Please run the run.sh file to start and test the applications.
+ For to start services was used Docker Compose.<br>
+ Please run the run.sh file to start and test the applications.<br>
  
  # Microservices
- ms-auth(for Authentication and Authorization),
- ms-user(for Create user and other user operation),
- ms-parcel(for parcel operation),
- ms-api-gateway(for 3 microservices is proxy).
+ ms-auth(for Authentication and Authorization)<br>
+ ms-user(for Create user and other user operation)<br>
+ ms-parcel(for parcel operation)<br>
+ ms-api-gateway(for 3 microservices is proxy)<br>
 
  # Swagger
- Swagger urls:
- http://localhost:8080/ms-auth/swagger-ui.html
- http://localhost:8080/ms-user/swagger-ui.html
- http://localhost:8080/ms-parcel/swagger-ui.html
+ Swagger urls: <br>
+ http://localhost:8080/ms-auth/swagger-ui.html <br>
+ http://localhost:8080/ms-user/swagger-ui.html <br>
+ http://localhost:8080/ms-parcel/swagger-ui.html <br>
 
  # JWT
  when you login with auth endpoint to system then return token,
